@@ -5,16 +5,21 @@ import SQLite from 'react-native-sqlite-storage';
 SQLite.enablePromise(true);
 
 const database_name = "CaffeineHL.db";
+const table_name = "CoffeeDrink";
+let db;
 
 export default class CoffeeDrink {
 
-    static init() {
-        let db;
+    constructor() {
+        this.init();
+    }
+
+    init() {
         return new Promise((resolve) => {
             console.log("Plugin integrity check ... ");
             SQLite.echoTest()
                 .then(() => {
-                    console.log("Integrity check passed ...")
+                    console.log("Integrity check passed ...");
                     console.log("Opening database ... ");
                     SQLite.openDatabase(
                         database_name
@@ -26,13 +31,11 @@ export default class CoffeeDrink {
                             // Create tables if not created
 
                             db.executeSql(
-                                "CREATE TABLE IF NOT EXISTS CoffeeDrink(" +
+                                `CREATE TABLE IF NOT EXISTS ${table_name}(` +
                                 "id INTEGER PRIMARY KEY," +
                                 "name TEXT NOT NULL," +
                                 "serving_size FLOAT NOT NULL," +
-                                "half_life FLOAT NOT NULL," + // In hours
-                                "caffeine_serving FLOAT NOT NULL," +
-                                "decay_constant FLOAT);"
+                                "caffeine_serving FLOAT NOT NULL);"
                             ).then(() => {
                                 console.log("DB ready");
                                 resolve(db);
@@ -46,6 +49,15 @@ export default class CoffeeDrink {
                     console.log(err)
             })
         })
+    }
+
+    createDrink(name, serving_size, caffeine_serving) {
+
+        return db.executeSql(
+            `INSERT INTO ${table_name} (name, serving_size, caffeine_serving) VALUES (?, ?, ?)`,
+            [name, serving_size, caffeine_serving]
+        )
+
     }
 
 }

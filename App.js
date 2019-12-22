@@ -20,8 +20,9 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-import CoffeeDrink from "./models/CoffeeDrinkModel";
+import CoffeeDrinkModel from "./models/CoffeeDrinkModel";
 
+const CoffeeDrink = new CoffeeDrinkModel();
 CoffeeDrink.init();
 
 const App: () => React$Node = () => {
