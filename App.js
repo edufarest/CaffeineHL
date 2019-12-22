@@ -20,31 +20,25 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {createAppContainer} from "react-navigation";
+import {createMaterialBottomTabNavigator} from "react-navigation-material-bottom-tabs";
+
+// Models
 import CoffeeDrinkModel from "./models/CoffeeDrinkModel";
+
+// Screens
+import HomeScreen from "./screens/HomeScreen";
+import CoffeeDrinkScreen from "./screens/CoffeeDrinkScreen";
 
 const CoffeeDrink = new CoffeeDrinkModel();
 CoffeeDrink.init();
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+const MainNavigator = createMaterialBottomTabNavigator({
+  Home: {screen: HomeScreen},
+  CoffeeDrink: {screen: CoffeeDrinkScreen}
+});
+
+const App = createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   scrollView: {
