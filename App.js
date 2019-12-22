@@ -38,7 +38,7 @@ const App: () => React$Node = () => {
             </View>
           )}
           <View style={styles.body}>
-
+            <Text>It works</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
