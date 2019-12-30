@@ -33,50 +33,20 @@ import CoffeeDrinkScreen from "./screens/CoffeeDrinkScreen";
 const CoffeeDrink = new CoffeeDrinkModel();
 CoffeeDrink.init();
 
-const MainNavigator = createMaterialBottomTabNavigator({
-  Home: {screen: HomeScreen},
-  CoffeeDrink: {screen: CoffeeDrinkScreen}
-});
+const MainNavigator = createMaterialBottomTabNavigator(
+    {
+      Home: {screen: HomeScreen},
+      CoffeeDrink: {screen: CoffeeDrinkScreen},
+    },
+    {
+        initialRouteName: 'Home',
+        activeColor:   '#FFFFFF',
+        inactiveColor: '#5D5D5D',
+        barStyle: { backgroundColor: '#2F2F2F'},
+    }
+);
 
 const App = createAppContainer(MainNavigator);
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
