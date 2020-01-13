@@ -1,4 +1,8 @@
 {
   "name": "CaffeineHL",
-  "displayName": "CaffeineHL"
+  "displayName": "CaffeineHL",
+  "expo": {
+    "name": "CaffeineHL",
+    "slug": "CaffeineHL"
+  }
 }

@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://ju-iy2.anonymous.caffeinehl.exp.direct",
+  "packagerNgrokUrl": "https://packager.ju-iy2.anonymous.caffeinehl.exp.direct",
+  "ngrokPid": 35805
 }
