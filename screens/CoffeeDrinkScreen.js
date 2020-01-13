@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {Button, Text, TextInput, View} from 'react-native';
+
+import CoffeeDrinkModel from '../models/CoffeeDrinkModel';
 
 export default class CoffeeDrinkScreen extends Component {
     constructor(props) {
@@ -10,6 +12,26 @@ export default class CoffeeDrinkScreen extends Component {
             caffeine_serving: 0,
         };
     }
+
+    createDrink = () => {
+        const name = this.state.name || ' ';
+        const serving_size = this.state.serving_size || 0;
+        const caffeine_serving = this.state.caffeine_serving || 0;
+
+        let drinkModel = new CoffeeDrinkModel();
+
+        // drinkModel.init();
+        drinkModel
+            .createDrink(name, serving_size, caffeine_serving)
+            .then(() => {
+                console.log('Created Drink');
+                // Send back to home screen after creation
+                this.props.navigation.navigate('Home');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
 
     render() {
         return (
@@ -40,6 +62,7 @@ export default class CoffeeDrinkScreen extends Component {
                         keyboardType={'numeric'}
                         value={this.state.caffeine_serving.toString()}
                     />
+                    <Button title="Create Drink" onPress={this.createDrink} />
                 </View>
             </View>
         );
