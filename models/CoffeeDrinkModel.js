@@ -66,4 +66,10 @@ export default class CoffeeDrink {
 
         return db.executeSql(`SELECT * FROM ${table_name}`);
     }
+
+    deleteDrink(id) {
+        console.log('Deleting drink ' + id);
+
+        return db.executeSql(`DELETE FROM ${table_name} WHERE id=${id}`);
+    }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Text, TouchableHighlight, View} from 'react-native';
 
 import CoffeeDrinkModel from '../models/CoffeeDrinkModel';
 
@@ -57,6 +57,8 @@ export default class HomeScreen extends Component {
             });
     }
 
+    deleteDrink() {}
+
     render() {
         // this.fetchDrinks();
 
@@ -67,10 +69,12 @@ export default class HomeScreen extends Component {
                 <View>
                     {this.state.drinks.map(drink => {
                         return (
-                            <Button
+                            <TouchableHighlight
                                 title={drink.name}
-                                key={drink.name}
-                                onLongPress={console.log('Delete')}
+                                key={drink.id}
+                                onLongPress={() => {
+                                    this.deleteDrink(drink.id);
+                                }}
                             />
                         );
                     })}
