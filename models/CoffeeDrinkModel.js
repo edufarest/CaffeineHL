@@ -64,12 +64,18 @@ export default class CoffeeDrink {
     listDrinks() {
         console.log('Getting Drinks');
 
+        if (!db) {
+            this.init();
+        }
+
         return db.executeSql(`SELECT * FROM ${table_name}`);
     }
 
     deleteDrink(id) {
         console.log('Deleting drink ' + id);
-
+        if (!db) {
+            this.init();
+        }
         return db.executeSql(`DELETE FROM ${table_name} WHERE id=${id}`);
     }
 }

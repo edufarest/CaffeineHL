@@ -57,7 +57,19 @@ export default class HomeScreen extends Component {
             });
     }
 
-    deleteDrink() {}
+    deleteDrink(id) {
+        console.log('Deleting ' + id);
+
+        let drinkModel = new CoffeeDrinkModel();
+
+        drinkModel.deleteDrink(id).then(
+            this.setState({
+                drinks: this.state.drinks.filter(drink => {
+                    return drink.id !== id;
+                }),
+            }),
+        );
+    }
 
     render() {
         // this.fetchDrinks();
@@ -70,12 +82,13 @@ export default class HomeScreen extends Component {
                     {this.state.drinks.map(drink => {
                         return (
                             <TouchableHighlight
-                                title={drink.name}
                                 key={drink.id}
                                 onLongPress={() => {
                                     this.deleteDrink(drink.id);
-                                }}
-                            />
+                                }}>
+                                {/* Create drink button here*/}
+                                <Text>{drink.name}</Text>
+                            </TouchableHighlight>
                         );
                     })}
                 </View>
