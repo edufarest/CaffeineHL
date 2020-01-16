@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Text, TouchableHighlight, View} from 'react-native';
 
+import DrinkButton from "../components/DrinkButton";
+
 import CoffeeDrinkModel from '../models/CoffeeDrinkModel';
 
 // import {Ionicons} from '@expo/vector-icons';
@@ -70,7 +72,9 @@ export default class HomeScreen extends Component {
                                     this.deleteDrink(drink.id);
                                 }}>
                                 {/* Create drink button here*/}
-                                <Text>{drink.name}</Text>
+                                <DrinkButton
+                                    title={drink.name}
+                                />
                             </TouchableHighlight>);
                     })}
                 </View>
