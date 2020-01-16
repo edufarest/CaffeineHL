@@ -30,31 +30,15 @@ export default class HomeScreen extends Component {
     fetchDrinks() {
         let drinkModel = new CoffeeDrinkModel();
 
-        drinkModel
-            .listDrinks()
-            .then(res => {
-                console.log('Listing drinks');
-                console.log(res[0]);
+        console.log("Fetching drinks");
 
-                let drinks = [];
-                res = res[0];
+        drinkModel.listDrinks((drinks) => {
+            this.setState({drinks: drinks});
+            console.log("\n\n\nDRINKS\n\n");
+            console.log(this.state.drinks)
+        });
 
-                if (!(res && res.rows && res.rows.length)) {
-                    console.log("Couldn't find res.rows.length");
-                    return;
-                }
 
-                for (let i = 0; i < res.rows.length; i++) {
-                    drinks.push(res.rows.item(i));
-                }
-
-                this.setState({drinks: drinks});
-
-                console.log(drinks);
-            })
-            .catch(err => {
-                console.error(err);
-            });
     }
 
     deleteDrink(id) {
@@ -79,17 +63,15 @@ export default class HomeScreen extends Component {
                 <Text>Current Caffeine: 0 mg</Text>
 
                 <View>
-                    {this.state.drinks.map(drink => {
-                        return (
-                            <TouchableHighlight
+                    {this.state.drinks.map((drink) => {
+                            return (<TouchableHighlight
                                 key={drink.id}
                                 onLongPress={() => {
                                     this.deleteDrink(drink.id);
                                 }}>
                                 {/* Create drink button here*/}
                                 <Text>{drink.name}</Text>
-                            </TouchableHighlight>
-                        );
+                            </TouchableHighlight>);
                     })}
                 </View>
             </View>
