@@ -1,3 +1,4 @@
 To Run:
 
-'npx react-native start' and on another terminal 'npx react-native run-android'
+npm start: Starts the server
+npm run android: Launches the app in the simulator
