@@ -21,10 +21,10 @@ export default class HomeScreen extends Component {
 
         this.props.navigation.addListener('didFocus', payload => {
             console.log('got reloaded');
-            this.fetchDrinks();
+            // this.fetchDrinks();
         });
 
-        this.fetchDrinks();
+        // this.fetchDrinks();
     }
 
     fetchDrinks() {
