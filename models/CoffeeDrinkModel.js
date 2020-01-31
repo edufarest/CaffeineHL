@@ -78,4 +78,8 @@ export default class CoffeeDrink {
         }
         return db.executeSql(`DELETE FROM ${table_name} WHERE id=${id}`);
     }
+
+    getCaffeineAt(id, date = Date.now() / 1000) {
+        // Epoch time
+    }
 }
